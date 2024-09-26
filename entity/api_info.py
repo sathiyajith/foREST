@@ -107,9 +107,9 @@ class FieldInfo:
 
     def genetic_algorithm(self) -> DependPoint:
         depend_point = random.choices(self.depend_list,
-                                      weights=[point.mutate_score + point.base_score for point in self.depend_list])[0]
+                                      weights=[point.mutate_score + point.base_score+1 for point in self.depend_list])[0]
         depend_point.flag = random.choices(["base", "mutate"],
-                                           weights=[depend_point.base_score, depend_point.mutate_score])[0]
+                                           weights=[depend_point.base_score+1, depend_point.mutate_score])[0]
         return depend_point
 
 
