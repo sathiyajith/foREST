@@ -196,7 +196,8 @@ class ComposeRequest:
                 return value
         if value is None:
             value = BasicFuzz.fuzz_value_from_field(field_info)
-        self.path.pop()
+        if self.path:
+            self.path.pop()
         return value
 
     def compose_optional_request(self):
