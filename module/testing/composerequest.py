@@ -147,7 +147,7 @@ class ComposeRequest:
             self.path.append("list")
         elif field_info.field_type == "dict":
             self.path.append("dict")
-        if self.path not in self.current_para_list:
+        if self.path not in self.current_para_list and self.path:
             self.path.pop()
             return
         value = None
