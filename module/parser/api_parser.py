@@ -10,6 +10,11 @@ import re
 
 pattern = re.compile(r'{.*}')
 
+class DateTimeEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, datetime):
+            return obj.isoformat()  # Convert datetime to string
+        return super().default(obj)
 
 def match_identifier(identifier_1, identifier_2):
     method_1, path_1 = identifier_1.split()
@@ -56,11 +61,11 @@ class APIListParser(object):
         with open(path, encoding='utf-8') as stream:
             if path.endswith(".yaml"):
                 yaml_data = yaml.safe_load(stream)
-                json_data = jsonref.loads(json.dumps(yaml_data))
+                json_data = jsonref.loads(json.dumps(yaml_data, cls=DateTimeEncoder))
             elif path.endswith(".json"):
                 stream = json.load(stream)
                 SwaggerParser.resolve_circular_references(stream)
-                json_data = jsonref.loads(json.dumps(stream))
+                json_data = jsonref.loads(json.dumps(stream, cls=DateTimeEncoder))
             else:
                 raise Exception("Error API file format")
 
