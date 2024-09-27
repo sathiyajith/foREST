@@ -3,6 +3,7 @@ import yaml
 from typing import Union
 import jsonref
 from entity.api_info import APIInfo
+from datetime import datetime
 from module.parser.dependency import SemanticTree, SetKeyValueDependency
 from .swagger_parser import SwaggerParser
 from .open_api_parser import OpenAPIParser
