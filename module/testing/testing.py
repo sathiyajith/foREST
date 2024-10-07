@@ -158,6 +158,7 @@ class TestingMonitor:
             response_status = 0
             ##added by me
             self.summery_count['timeout requests number'] += 1
+            Monitor().time_monitor.message = "empty response"
         return response_status
 
     def response_handle(self, request: Request):

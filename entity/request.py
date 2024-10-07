@@ -112,6 +112,7 @@ class Request:
         return algorithm_list
 
     def send_request(self):
+        print("sending request")
         kwargs = dict()
         kwargs["url"] = self.url
         kwargs["headers"] = self.header
