@@ -116,28 +116,28 @@ class Request:
         kwargs["url"] = self.url
         kwargs["headers"] = self.header
         kwargs["data"] = self.data
-        print(self.url)
+        #print(self.url)
         try:
             response = getattr(requests, self.method.lower())(**kwargs, timeout=foRESTSettings().request_timeout) # type: requests.Response
-            print(response)
+            #print(response)
         except TypeError:
-            print("error")
+            #print("error")
             raise Exception("request type error: {}".format(self.method))
         except requests.exceptions.Timeout:
-            print("timeout Exception")
+            #print("timeout Exception")
             response = None
         except requests.exceptions.TooManyRedirects:
-            print("redirects")
+            #print("redirects")
             raise Exception("bad url, try a different one\n url: {}".format(self.url))
         except requests.exceptions.RequestException:
-            print("Request Exception")
+            #print("Request Exception")
             response = None
         if response is None:
             self.response_code = 0
-            print("response 0 ")
+            #print("response 0 ")
         else:
-            print("The response:")
-            print(response.status_code)
+            #print("The response:")
+            #print(response.status_code)
             self.response_code = response.status_code
         self.response = response
 
