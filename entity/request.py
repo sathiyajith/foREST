@@ -129,7 +129,10 @@ class Request:
             response = None
         if response is None:
             self.response_code = 0
+            print("response 0 ")
         else:
+            print("The response:")
+            print(response.status_code)
             self.response_code = response.status_code
         self.response = response
 
