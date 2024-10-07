@@ -156,6 +156,8 @@ class TestingMonitor:
             response_status = self.response_handle(request)
         else:
             response_status = 0
+            ##added by me
+            self.summery_count['timeout requests number'] += 1
         return response_status
 
     def response_handle(self, request: Request):
